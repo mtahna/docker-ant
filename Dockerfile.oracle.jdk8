@@ -1,0 +1,26 @@
+FROM centos:7
+
+# Set Ant version
+ARG ANT_VER="1.10.8"
+
+# Set environment variable
+ENV JAVA_HOME /opt/java
+ENV ANT_HOME /opt/ant
+ENV PATH $PATH:$JAVA_HOME/bin:$ANT_HOME/bin
+ENV CLASSPATH=.
+
+# Install packages
+# Install Ant
+RUN yum install -y curl tar gzip && \
+    cd /opt/ && \
+    curl -OL --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz" && \
+    tar xzf /opt/jdk-8u131-linux-x64.tar.gz -C /opt/ && \
+    rm -rf /opt/jdk-8u131-linux-x64.tar.gz && \
+    ln -s /opt/jdk1.8.0_131 $JAVA_HOME && \
+    curl -fsSL https://ftp.tsukuba.wide.ad.jp/software/apache//ant/binaries/apache-ant-$ANT_VER-bin.tar.gz | tar xzf - -C /opt/ && \
+    rm -rf /opt/apache-ant-$ANT_VER-bin.tar.gz && \
+    ln -s /opt/apache-ant-$ANT_VER $ANT_HOME 
+
+#
+CMD ["/bin/bash"]
+
