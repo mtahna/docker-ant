@@ -14,11 +14,11 @@ For example, execute it for the Maven=1.9.1 version.
 # Execute Maven Build
 Do the following when executing Maven build.
 ```
-% make run -src [Target Source] -cmd [Target Command]
+% make run src=[Target Source] cmd=[Target Command]
 ```
 
 Can be executed by specifying the Maven version.
 For example, execute it for the "Project" folder. 
 ```
-% make run -src Project -cmd "ant" -mvn_ver=1.10.8 jdk_ver=jdk8
+% make run src=Project cmd="ant" ant_ver=1.10.8 jdk_ver=jdk8
 ```
