@@ -17,7 +17,8 @@ RUN yum install -y curl tar gzip && \
     tar xzf /opt/jdk-8u131-linux-x64.tar.gz -C /opt/ && \
     rm -rf /opt/jdk-8u131-linux-x64.tar.gz && \
     ln -s /opt/jdk1.8.0_131 $JAVA_HOME && \
-    curl -fsSL https://ftp.tsukuba.wide.ad.jp/software/apache//ant/binaries/apache-ant-$ANT_VER-bin.tar.gz | tar xzf - -C /opt/ && \
+    curl -OL https://archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VER-bin.tar.gz && \
+    tar xzf /opt/apache-ant-$ANT_VER-bin.tar.gz -C /opt/ && \
     rm -rf /opt/apache-ant-$ANT_VER-bin.tar.gz && \
     ln -s /opt/apache-ant-$ANT_VER $ANT_HOME 
 
