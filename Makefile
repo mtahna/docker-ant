@@ -7,7 +7,7 @@ jdk_ver  := jdk8
 
 # Set Argument.
 src := .
-cmd := ant
+cmd := ant -version
 
 
 # Variables used internally.
