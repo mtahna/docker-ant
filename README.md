@@ -8,7 +8,7 @@ Do the following when creating an docker image.
 Can be executed by specifying the Ant version.
 For example, execute it for the Ant=1.10.7 version. 
 ```
-% make build ant_ver=1.10.7 jdk_ver=jdk8
+% make build ant_ver=1.10.7 ostype=centos7 javatype=oracle jdk_ver=jdk8
 ```
 
 # Execute Ant Build
@@ -20,5 +20,5 @@ Do the following when executing Ant build.
 Can be executed by specifying the Ant version.
 For example, execute it for the "Project" folder. 
 ```
-% make run src=Project cmd="ant" ant_ver=1.10.7 jdk_ver=jdk8
+% make run src=Project cmd="ant" ostype=centos7 javatype=oracle ant_ver=1.10.7 jdk_ver=jdk8
 ```

@@ -1,7 +1,8 @@
 # Set jdk and ant version.
-vendor  := oracle
-jdk_ver := jdk8
-ant_ver := 1.10.8
+ant_ver  := 1.10.8
+ostype   := centos7
+javatype := oracle
+jdk_ver  := jdk8
 
 
 # Set Argument.
@@ -10,18 +11,18 @@ cmd := ant
 
 
 # Variables used internally.
-DOCKER_IMAGE  := ant:$(ant_ver)-$(vendor)-$(jdk_ver)
-MOUNT_SRC_DIR := $(shell readlink -f $(src))
-MOUNT_DST_DIR := /home/project
-WORK_DIR      := $(MOUNT_DST_DIR)
-EXEC_COMMAND  := $(cmd)
+DOCKER_IMAGE   := ant:$(ant_ver)-$(ostype)-$(javatype)-$(jdk_ver)
+MOUNT_HOST_DIR := $(shell readlink -f $(src))
+MOUNT_CONT_DIR := /home/project
+WORK_DIR       := $(MOUNT_CONT_DIR)
+EXEC_COMMAND   := $(cmd)
 
 
 build: 
-	docker build ./ -t $(DOCKER_IMAGE) --build-arg ANT_VER=$(ant_ver) -f Dockerfile.$(vendor).$(jdk_ver)
+	docker build ./ -t $(DOCKER_IMAGE) --build-arg ANT_VER=$(ant_ver) -f Dockerfile.$(ostype).$(javatype).$(jdk_ver)
 
 run: 
-	docker run -it --rm -v $(MOUNT_SRC_DIR):$(MOUNT_DST_DIR) -w $(WORK_DIR) $(DOCKER_IMAGE) $(EXEC_COMMAND)
+	docker run -it --rm -v $(MOUNT_HOST_DIR):$(MOUNT_CONT_DIR) -w $(WORK_DIR) $(DOCKER_IMAGE) $(EXEC_COMMAND)
 
 help:
 	@echo "Do the following when creating an docker image."
